@@ -1,0 +1,12 @@
+{
+    // Tells the Java extension where your compiled files are located
+    "java.project.referencedLibraries": [
+        "bin"
+    ],
+    // Explicitly defines the output folder for all compilation
+    "java.project.outputPath": "bin",
+    // Specifies the classpath for running the MainApp
+    "java.project.sourcePaths": [
+        "src"
+    ]
+}
