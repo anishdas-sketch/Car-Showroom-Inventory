@@ -620,6 +620,66 @@ public class ShowroomGUI extends JFrame {
     }
 
     private int showConfirmDialog(String message, String title) {
+        // Create a custom dialog for better control
+        final JDialog dialog = new JDialog(this, title, true);
+        dialog.setLayout(new BorderLayout());
+        dialog.getContentPane().setBackground(PRIMARY_BG);
+        
+        JPanel contentPanel = new JPanel(new BorderLayout());
+        contentPanel.setBackground(PRIMARY_BG);
+        contentPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
+
+        JTextArea textArea = new JTextArea(message);
+        textArea.setEditable(false);
+        textArea.setOpaque(false);
+        textArea.setForeground(TEXT_COLOR);
+        textArea.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        textArea.setWrapStyleWord(true);
+        textArea.setLineWrap(true);
+        contentPanel.add(textArea, BorderLayout.CENTER);
+
+        // Button panel
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
+        buttonPanel.setBackground(PRIMARY_BG);
+        
+        final int[] result = {JOptionPane.NO_OPTION}; // Default to NO
+        
+        JButton yesButton = new JButton("Yes");
+        yesButton.setBackground(new Color(40, 167, 69)); // Green
+        yesButton.setForeground(Color.BLACK);
+        yesButton.setFont(new Font("SansSerif", Font.BOLD, 14));
+        yesButton.setFocusPainted(false);
+        yesButton.setPreferredSize(new Dimension(100, 40));
+        yesButton.addActionListener(e -> {
+            result[0] = JOptionPane.YES_OPTION;
+            dialog.dispose();
+        });
+        
+        JButton noButton = new JButton("No");
+        noButton.setBackground(BUTTON_COLOR); // Red
+        noButton.setForeground(Color.BLACK);
+        noButton.setFont(new Font("SansSerif", Font.BOLD, 14));
+        noButton.setFocusPainted(false);
+        noButton.setPreferredSize(new Dimension(100, 40));
+        noButton.addActionListener(e -> {
+            result[0] = JOptionPane.NO_OPTION;
+            dialog.dispose();
+        });
+        
+        buttonPanel.add(yesButton);
+        buttonPanel.add(noButton);
+        
+        dialog.add(contentPanel, BorderLayout.CENTER);
+        dialog.add(buttonPanel, BorderLayout.SOUTH);
+        
+        dialog.pack();
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
+        
+        return result[0];
+    }
+
+    /* private int showConfirmDialog(String message, String title) {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBackground(PRIMARY_BG);
 
@@ -635,7 +695,7 @@ public class ShowroomGUI extends JFrame {
 
         // Note: The buttons inside JOptionPane will still be native L&F
         return JOptionPane.showConfirmDialog(this, panel, title, JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-    }
+    } */
 
     // --- Input Validation Helpers ---
 

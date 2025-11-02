@@ -21,11 +21,11 @@ import java.util.stream.Collectors;
 public class InventoryService {
     private List<CarModel> inventory;
     private List<SaleModel> salesLog;
-
+    
     // --- CORRECTED FILE PATHS ---
     // Use "../data/" to place the data folder one level up from the execution directory (src),
     // effectively placing it in the project root.
-    private static final String DATA_DIR_RELATIVE_TO_SRC = "../data/"; // Relative path from 'src'
+    private static final String DATA_DIR_RELATIVE_TO_SRC = "../Car Showroom Inventory/data/"; // Relative path from 'src'
     private final String INVENTORY_FILE = DATA_DIR_RELATIVE_TO_SRC + "inventory.csv";
     private final String SALES_LOG_FILE = DATA_DIR_RELATIVE_TO_SRC + "sales_log.csv";
     private final String IMAGE_DIR = DATA_DIR_RELATIVE_TO_SRC + "images"; // Image directory path
